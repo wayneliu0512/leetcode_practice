@@ -4,6 +4,7 @@
 #include <cmath>
 #include <climits>
 #include <unordered_map>
+#include "linked_list.h"
 
 using namespace std;
 
@@ -321,13 +322,12 @@ string longestCommonPrefix(vector<string> &strs)
 
 int main()
 {
-    vector<string> vec{"dog", "racecar", "car"};
+    vector<int> vec {1, 2, 3, 4};
 
-    // for (auto c : vec)
-    // cout << c;
-    // cout << endl;
-
-    cout << longestCommonPrefix(vec) << endl;
+    auto linked_list = CreateList(vec);
+    ShowList(linked_list);
+    linked_list = removeNthFromEnd(linked_list, 2);
+    ShowList(linked_list);
 
     return 0;
 }
