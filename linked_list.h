@@ -39,24 +39,34 @@ void ShowList(ListNode *head)
     cout << endl;
 }
 
-ListNode *removeNthFromEnd(ListNode *head, int &count, int n)
-{
-    if (head == nullptr)
-        return nullptr;
-    else
-    {
-        auto new_head = removeNthFromEnd(head->next, count, n);
-        if (count == n)
-            head->next = new_head;
-        count++;
-        return head->next;
-    }
-}
-
 ListNode *removeNthFromEnd(ListNode *head, int n)
 {
-    int count = 0;
-    return removeNthFromEnd(head, count, n);
-}
+    ListNode *target_ptr, *help_ptr, *prev_ptr;    
 
-// 1->2->null
+    target_ptr = help_ptr = head;
+
+    int i = 0;
+    while (help_ptr != nullptr)
+    {
+        if (i >= n)
+        {
+            prev_ptr = target_ptr;
+            target_ptr = target_ptr->next;
+        }
+        ++i;
+        help_ptr = help_ptr->next;
+    }
+
+    if (target_ptr == head) 
+    {
+        auto temp = head->next;
+        delete head;
+        return temp;
+    }
+
+    auto temp = target_ptr;
+    prev_ptr->next = target_ptr->next;
+    delete temp;
+
+    return head;
+}
