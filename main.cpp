@@ -326,7 +326,7 @@ int main()
 
     auto linked_list = CreateList(vec);
     ShowList(linked_list);
-    linked_list = removeNthFromEnd(linked_list, 2);
+    linked_list = reverseList(linked_list);
     ShowList(linked_list);
 
     return 0;

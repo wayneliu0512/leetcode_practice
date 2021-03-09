@@ -41,7 +41,7 @@ void ShowList(ListNode *head)
 
 ListNode *removeNthFromEnd(ListNode *head, int n)
 {
-    ListNode *target_ptr, *help_ptr, *prev_ptr;    
+    ListNode *target_ptr, *help_ptr, *prev_ptr;
 
     target_ptr = help_ptr = head;
 
@@ -57,7 +57,7 @@ ListNode *removeNthFromEnd(ListNode *head, int n)
         help_ptr = help_ptr->next;
     }
 
-    if (target_ptr == head) 
+    if (target_ptr == head)
     {
         auto temp = head->next;
         delete head;
@@ -69,4 +69,20 @@ ListNode *removeNthFromEnd(ListNode *head, int n)
     delete temp;
 
     return head;
+}
+
+ListNode *reverseList(ListNode *head)
+{
+    ListNode *next;
+    ListNode *reverse_head = nullptr;
+
+    while (head)
+    {
+        next = head->next;
+        head->next = reverse_head;
+        reverse_head = head;
+        head = next;
+    }
+
+    return reverse_head;
 }
