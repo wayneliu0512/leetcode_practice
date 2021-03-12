@@ -322,12 +322,13 @@ string longestCommonPrefix(vector<string> &strs)
 
 int main()
 {
-    vector<int> vec {1, 2, 3, 4};
+    vector<int> vec1{0, 1, 3, 6, 10};
+    vector<int> vec2{2, 4, 5, 7, 8, 9};
 
-    auto linked_list = CreateList(vec);
-    ShowList(linked_list);
-    linked_list = reverseList(linked_list);
-    ShowList(linked_list);
+    auto list1 = CreateList(vec1);
+    auto list2 = CreateList(vec2);
+    auto merge = mergeTwoLists(list1, list2);  
+    ShowList(merge);
 
     return 0;
 }
