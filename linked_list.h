@@ -26,6 +26,7 @@ ListNode *CreateList(const vector<int> &vec)
         head->next = new ListNode(vec[i]);
         head = head->next;
     }
+    head->next = nullptr;
     return front;
 }
 
@@ -107,4 +108,49 @@ ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
         l2->next = mergeTwoLists(l2->next, l1);
     }
     return result;
+}
+// 12 21
+bool isPalindrome(ListNode *head)
+{
+    ListNode *slow, *fast, *next;
+    slow = nullptr;
+    fast = head;
+    while (fast != nullptr && fast->next != nullptr)
+    {
+        fast = fast->next->next;
+
+        next = head->next;
+        head->next = slow;
+        slow = head;
+        head = next;
+    }
+
+    // odd
+    if (fast != nullptr)
+        head = head->next;
+
+    while (head != nullptr && slow != nullptr)
+    {
+        if (head->val != slow->val)
+            return false;
+        head = head->next;
+        slow = slow->next;
+    }
+    return true;
+}
+
+bool hasCycle(ListNode *head)
+{
+    while (head != nullptr)
+    {
+        auto fast_head = head;
+        while (fast_head != nullptr)
+        {
+            fast_head = fast_head->next;
+            if (head == fast_head)
+                return true;
+            
+        }
+        head = head->next;
+    }
 }

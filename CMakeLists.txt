@@ -7,6 +7,7 @@ enable_testing()
 add_executable(hello 
 main.cpp
 linked_list.h
+tree.h
 )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

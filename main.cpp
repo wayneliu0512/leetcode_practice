@@ -327,8 +327,12 @@ int main()
 
     auto list1 = CreateList(vec1);
     auto list2 = CreateList(vec2);
-    auto merge = mergeTwoLists(list1, list2);  
-    ShowList(merge);
+    auto is_palindrome = isPalindrome(list2);
+    if (is_palindrome)
+        cout << "true" << endl;
+    else
+        cout << "false" << endl;
+    // ShowList(merge);
 
     return 0;
 }
