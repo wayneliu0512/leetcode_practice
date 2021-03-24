@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -43,7 +45,34 @@ bool isMirror(TreeNode *t1, TreeNode *t2)
 {
     if (t1 == nullptr && t2 == nullptr)
         return true;
-    if (t1 != nullptr || t2 != nullptr)
+    if (t1 == nullptr || t2 == nullptr)
         return false;
     return (t1->val == t2->val) && isMirror(t1->right, t2->left) && isMirror(t1->left, t2->right);
+}
+
+bool isSymmetric(TreeNode *root)
+{
+    queue<TreeNode *> queue;
+
+    queue.push(root);
+    queue.push(root);
+
+    while (!queue.empty())
+    {
+        auto t1_p = queue.front();
+        queue.pop();
+        auto t2_p = queue.front();
+        queue.pop();
+        if (t1_p == nullptr && t2_p == nullptr)
+            continue;
+        if (t1_p == nullptr || t2_p == nullptr)
+            return false;
+        if (t1_p->val != t2_p->val)
+            return false;
+        queue.push(t1_p->right);
+        queue.push(t2_p->left);
+        queue.push(t1_p->left);
+        queue.push(t2_p->right);
+    }
+    return true;
 }
